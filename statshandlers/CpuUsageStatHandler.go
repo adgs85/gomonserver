@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/adgs85/gomonserver/monserver"
-	"github.com/davecgh/go-spew/spew"
+	"github.com/adgs85/gomonserver/statdatabase"
 )
 
 const CpuStatsType = "cpu"
@@ -19,5 +19,5 @@ type cpuHandler struct {
 
 func (cpuHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	stat := monserver.UnmarshalBodyToStat(r)
-	println(spew.Sdump(stat))
+	statdatabase.InsertStat(stat)
 }

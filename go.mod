@@ -6,7 +6,7 @@ replace github.com/adgs85/gomonmarshalling => /home/adgs/dev/newprj/monmarshalli
 
 require (
 	github.com/adgs85/gomonmarshalling v0.0.0-20220315204511-45dde8c80fea
-	github.com/davecgh/go-spew v1.1.1
+	github.com/lib/pq v1.10.4
 )
 
 require (
