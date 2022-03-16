@@ -28,10 +28,11 @@ func insertStatSnapshot(ctx context.Context, c sql.Conn, stat *monmarshalling.St
 	r, err := stmt.ExecContext(ctx,
 		meta.HostName,
 		meta.StatType,
-		time.Unix(meta.AgentTimestampUnixMs, 0),
+		time.UnixMilli(meta.AgentTimestampUnixMs).UTC(),
 		time.Now().UTC(),
 		meta.PollRateMs,
 		stat.Payload)
+
 	r.RowsAffected()
 	CheckError(err)
 }
