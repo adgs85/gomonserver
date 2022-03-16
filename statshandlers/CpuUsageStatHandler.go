@@ -1,20 +1,17 @@
 package statshandlers
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/adgs85/gomonserver/monserver"
 	"github.com/davecgh/go-spew/spew"
 )
 
-var requestPath = monserver.StatsEndpointPattern + "cpu"
+const CpuStatsType = "cpu"
 
-func getRegisterHandler() monserver.RegisterHandleFunc {
-	return func(serverMux *http.ServeMux) {
-		log.Println("Registering Disk stats handler on", requestPath)
-		serverMux.Handle(requestPath, cpuHandler{})
-	}
+func getCpuRegisterHandler() monserver.RegisterHandleFunc {
+	requestPath := monserver.StatsEndpointPattern + "cpu"
+	return getRegisterHandler(CpuStatsType, requestPath, cpuHandler{})
 }
 
 type cpuHandler struct {
