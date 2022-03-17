@@ -8,8 +8,14 @@ import (
 	"github.com/adgs85/gomonmarshalling/monmarshalling"
 )
 
-const insertSnapshot = `INSERT INTO stats_snapshot
-(host_name, stat_type, collected_ts, last_updated, polling_rate_ms, payload) VALUES ($1, $2, $3, $4, $5, $6);
+const insertSnapshot = `
+INSERT INTO stats_snapshot
+	(host_name, stat_type, collected_ts, last_updated, polling_rate_ms, payload) 
+VALUES 
+	($1, $2, $3, $4, $5, $6)
+on CONFLICT (host_name, stat_type) DO UPDATE
+	SET host_name=$1, stat_type=$2, collected_ts=$3, last_updated=$4, polling_rate_ms=$5, payload=$6
+
 `
 
 func InsertStat(stat *monmarshalling.Stat) {
@@ -25,7 +31,7 @@ func insertStatSnapshot(ctx context.Context, c sql.Conn, stat *monmarshalling.St
 	CheckError(err)
 	meta := stat.MetaData
 
-	r, err := stmt.ExecContext(ctx,
+	_, err2 := stmt.ExecContext(ctx,
 		meta.HostName,
 		meta.StatType,
 		time.UnixMilli(meta.AgentTimestampUnixMs).UTC(),
@@ -33,6 +39,5 @@ func insertStatSnapshot(ctx context.Context, c sql.Conn, stat *monmarshalling.St
 		meta.PollRateMs,
 		stat.Payload)
 
-	r.RowsAffected()
-	CheckError(err)
+	CheckError(err2)
 }
