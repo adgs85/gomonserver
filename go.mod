@@ -6,6 +6,7 @@ replace github.com/adgs85/gomonmarshalling => /home/adgs/dev/newprj/monmarshalli
 
 require (
 	github.com/adgs85/gomonmarshalling v0.0.0-20220315204511-45dde8c80fea
+	github.com/blockloop/scan v1.3.0
 	github.com/lib/pq v1.10.4
 )
 
