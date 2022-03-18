@@ -5,13 +5,14 @@ import (
 	"database/sql"
 	"time"
 
+	"github.com/adgs85/gomonserver/monserver"
 	_ "github.com/lib/pq"
 )
 
 var dataSource = func() *sql.DB {
 
 	db, err := sql.Open("postgres", psqlConnectionStr)
-	CheckError(err)
+	monserver.PanicOnError(err)
 
 	db.SetMaxOpenConns(100)
 	db.SetConnMaxLifetime(time.Hour)
@@ -22,12 +23,6 @@ var dataSource = func() *sql.DB {
 func GetConnWithContext() (*sql.Conn, context.Context, context.CancelFunc) {
 	ctx, cancel := context.WithCancel(context.Background())
 	con, err := dataSource.Conn(ctx)
-	CheckError(err)
+	monserver.PanicOnError(err)
 	return con, ctx, cancel
-}
-
-func CheckError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }

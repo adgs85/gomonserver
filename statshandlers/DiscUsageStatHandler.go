@@ -6,7 +6,7 @@ import (
 
 const DiskStatsType = "disk"
 
-func getDiskRegisterHandler() monserver.RegisterHandleFunc {
+func postDiskRegisterHandler() monserver.RegisterHandleFunc {
 	requestPath := monserver.StatsEndpointPattern + DiskStatsType
 	return getRegisterHandler(CpuStatsType, requestPath, statHandler{})
 }

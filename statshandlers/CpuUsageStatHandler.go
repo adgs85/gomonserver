@@ -6,7 +6,7 @@ import (
 
 const CpuStatsType = "cpu"
 
-func getCpuRegisterHandler() monserver.RegisterHandleFunc {
+func postCpuRegisterHandler() monserver.RegisterHandleFunc {
 	requestPath := monserver.StatsEndpointPattern + CpuStatsType
 	return getRegisterHandler(CpuStatsType, requestPath, statHandler{})
 }

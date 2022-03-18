@@ -10,8 +10,9 @@ import (
 
 func NewHandlerList() []monserver.RegisterHandleFunc {
 	return []monserver.RegisterHandleFunc{
-		getCpuRegisterHandler(),
-		getDiskRegisterHandler(),
+		postCpuRegisterHandler(),
+		postDiskRegisterHandler(),
+		getStatSnapshotRegisterHandler(),
 	}
 }
 
