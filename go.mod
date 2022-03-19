@@ -2,10 +2,8 @@ module github.com/adgs85/gomonserver
 
 go 1.17
 
-replace github.com/adgs85/gomonmarshalling => /home/adgs/dev/newprj/monmarshalling
-
 require (
-	github.com/adgs85/gomonmarshalling v0.0.0-20220315204511-45dde8c80fea
+	github.com/adgs85/gomonmarshalling v1.0.0
 	github.com/blockloop/scan v1.3.0
 	github.com/lib/pq v1.10.4
 )
