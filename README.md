@@ -1,6 +1,7 @@
 # gomonserver
 Postgresql server required
-
+docker-compose:
+```
 version: '3.1'
 
 services:
@@ -12,10 +13,13 @@ services:
       POSTGRES_PASSWORD: example
     ports:
       - "5432:5432"
-      
-      
+
+```
       
 
+
+DDL:
+```
 create database stats_db;
 
 create table STATS_SNAPSHOT(
@@ -39,3 +43,4 @@ create table STAT_HISTORY(
 );
 
 ALTER TABLE stats_snapshot ADD PRIMARY KEY (host_name , stat_type);
+```
