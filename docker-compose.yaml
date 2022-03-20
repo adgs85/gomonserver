@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
 
-  agent:
+  server:
     image: adgs85/gomonserver:1.0.1
     restart: always
     environment:
