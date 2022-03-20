@@ -1,4 +1,18 @@
 # gomonserver
+docker compose:
+
+```
+./build.sh
+./dockerbuild.sh
+docker-compose up
+```
+
+
+
+
+
+
+
 Postgresql server required
 docker-compose:
 ```
